@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h2 class="text-center">Listas de Livros</h2>
+<hr>
+<a class="btn btn-danger" href="{{url_for('adiciona_livro')}}">Adicionar Livros</a>
+<br><br>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <TBody>
+        {% for livro in livros %}
+        <tr>
+            <td>{{livro.id}}</td>
+            <td>{{livro.name}}</td>
+            <td>{{livro.descrição}}</td>
+            <td>{{livro.valor}}</td>
+            <td>
+                <a href="{{livro.id}}/atualiza_livro" class="btn btn-secondary btn-xs">Editar</a>
+                <a href="{{livro.id}}/removendo_livros" class="btn btn-danger btn-xs" onclick="return confirm ('excluir o registro:')">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </TBody>
+
+</table>
+{% if livros.has_prev %}
+<a href="{{url_for('lista_livro', page=livros.prev_num)}}">Pagina anterior</a>
+{% else %}
+    livros listados
+{% endif %}
+{% if livros.has_next %}
+<a href="{{url_for('lista_livro', page=livros.next_num)}}">Proxima pagina</a>
+{% else %}
+    livros listados
+{% endif %}
+{% endblock conteudo %}

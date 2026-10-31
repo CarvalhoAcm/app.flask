@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <h2 style="text-align: center;">
+    Incorporando Html ao meu Flask </h2>
+    <hr>
+    <form class="form-group" action="{{url_for('principal')}}" method="POST"> 
+        <label>Conteúdo</label>
+        <input class="form-control" type="text" name="conteudo">
+        <button class="btn btn-danger">Adicionar</button>
+    </form>
+    
+    Lista de Comandos
+    <ol class="list-group list-group-numbered">
+        {% for conteudo in conteudos %}
+        <li class="list-group-item">{{conteudo}}</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>
+
+{% endblock conteudo %}
